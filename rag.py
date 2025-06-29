@@ -28,16 +28,6 @@ class ChatPDF:
 
     def ingest(self, pdf_file_path: str):
         docs = PyPDFLoader(file_path=pdf_file_path).load()
-        self.model = ChatOllama(model="mistral")
-        self.text_splitter = RecursiveCharacterTextSplitter(chunk_size=1024, chunk_overlap=100)
-        self.prompt = PromptTemplate.from_template(
-            """
-            <s> [INST] You are an expert pdf reader. You will answer questions based on the pdf text. [/INST] </s> 
-            [INST] Question: {question} 
-            Context: {context} 
-            Answer: [/INST]
-            """
-        )
         chunks = self.text_splitter.split_documents(docs)
         chunks = filter_complex_metadata(chunks)
 
