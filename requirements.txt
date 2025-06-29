@@ -1,0 +1,8 @@
+langchain
+langchain-community
+streamlit
+streamlit-chat
+pypdf
+fastembed
+chromadb
+ollama
